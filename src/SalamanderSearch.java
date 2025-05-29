@@ -1,3 +1,5 @@
+import java.util.*;
+
 
 public class SalamanderSearch {
     public static void main(String[] args) {
@@ -69,6 +71,57 @@ public class SalamanderSearch {
     }//end salamanderLocation
 
 
+
+    public static List<int[]> possibleMoves(char[][] enclosure, int[] current){
+
+        List<int[]> moves = new ArrayList<>();
+
+        int curR = current[0]; //current row
+        int curC = current[1]; //current column
+
+    //check up
+
+        int newR = curR-1; //goes up
+        int newC = curC;
+        if(newR >=0 && enclosure[newR][newC] !='W'){
+
+            moves.add(new int[]{newR, newC});
+
+        }//end if
+
+    //check down
+
+        newR = curR+1; //goes down
+        newC = curC;
+        if(newR < enclosure.length && enclosure[newR][newC] !='W'){
+
+            moves.add(new int[]{newR, newC});
+
+        }//end if
+
+    //check left
+
+        newR = curR;
+        newC = curC-1; //goes left
+        if(newC >=0 && enclosure[newR][newC] !='W'){
+
+            moves.add(new int[]{newR, newC});
+
+        }//end if
+
+    //check right
+
+        newR = curR;
+        newC = curC+1; //goes right
+        if(newC < enclosure[newR].length  && enclosure[newR][newC] !='W'){
+
+            moves.add(new int[]{newR, newC});
+
+        }//end if
+
+        return moves; //gives possible salamander moves
+
+    }//end possibleMoves
 
 
 
