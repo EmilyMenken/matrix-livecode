@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-import java.util.List;
 
 public class SalamanderSearch {
     public static void main(String[] args) {
@@ -44,6 +42,34 @@ public class SalamanderSearch {
      * @throws IllegalArgumentException if the enclosure does not contain a salamander
      */
     public static boolean canReach(char[][] enclosure) {
+        
         return false;
-    }
-}
+
+    }//end canReach
+
+    public static int[] salamanderLocation(char[][] enclosure){
+            //complexity is O(n*m) n= rows * m= columns
+
+        //use r for rows, and c for columns - searching for 's'
+        for(int r = 0; r < enclosure.length; r++){
+            for(int c = 0; c < enclosure[r].length; c++){
+
+                if(enclosure[r][c] == 's'){
+
+                    int [] location = new int []{r, c};
+                    return location;    
+
+                }//end if
+            }//end inner for
+        }//end outer for
+
+        //throws an IllegalArgumentException if no salamander is found in the enclosure
+        throw new IllegalArgumentException("No salamander present");
+
+    }//end salamanderLocation
+
+
+
+
+
+}//end file
