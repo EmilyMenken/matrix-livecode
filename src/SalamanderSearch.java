@@ -45,9 +45,39 @@ public class SalamanderSearch {
      */
     public static boolean canReach(char[][] enclosure) {
         
-        return false;
+        int[] start = salamanderLocation(enclosure);
+        boolean[][] visited = new boolean [enclosure.length][enclosure[0].length];
+
+        return canReach(enclosure, start, visited);
 
     }//end canReach
+
+
+
+    public static boolean canReach(char[][]enclosure, int[] current, boolean [][]visited){
+
+        int curR = current[0]; //current row
+        int curC = current[1]; //current column
+
+        if(enclosure[curR][curC] == 'f') return true; //found food
+        if(visited[curR][curC]) return false; //already visited
+
+        visited[curR][curC] = true;
+
+        List<int[]> neighbors = possibleMoves(enclosure, current); //places the salamander can move
+
+        for(int[] neighbor : neighbors){
+
+            boolean found = canReach(enclosure, neighbor, visited);
+            if(found) return true;
+
+        }//end for
+
+        return false;
+
+    }//end canReachHelper
+
+    
 
     public static int[] salamanderLocation(char[][] enclosure){
             //complexity is O(n*m) n= rows * m= columns
